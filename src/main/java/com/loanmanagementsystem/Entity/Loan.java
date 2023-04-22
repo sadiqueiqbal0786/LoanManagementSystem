@@ -1,5 +1,9 @@
-package com.loanmanagementsystem.Loan;
+package com.loanmanagementsystem.Entity;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "Loan")
 public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,35 +28,69 @@ public class Loan {
 
     }
 
-    public Loan(String firstName, String lastName, String email) {
-        super();
+    public Loan(String firstName, String lastName, String email, double amount, Long interest, String term) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.amount = amount;
+        this.interest = interest;
+        this.term = term;
     }
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public Long getInterest() {
+        return interest;
+    }
+
+    public void setInterest(Long interest) {
+        this.interest = interest;
+    }
+
+    public String getTerm() {
+        return term;
+    }
+
+    public void setTerm(String term) {
+        this.term = term;
     }
 }
 
