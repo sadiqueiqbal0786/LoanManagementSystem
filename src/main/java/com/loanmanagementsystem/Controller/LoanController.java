@@ -2,20 +2,33 @@ package com.loanmanagementsystem.Controller;
 
 import com.loanmanagementsystem.Entity.Loan;
 import com.loanmanagementsystem.Service.LoanService;
+import com.loanmanagementsystem.Service.impl.LoanServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class LoanController {
     private LoanService loanService;
 
+
     public LoanController(LoanService loanService) {
         super();
         this.loanService = loanService;
+    }
+
+    @RequestMapping(path = {"/","/search"})
+    public String home(Loan loan, Model model, String keyword) {
+        if(keyword!=null) {
+            List<Loan> list = loanService.getByKeyword(keyword);
+            model.addAttribute("list", list);
+        }else {
+            List<Loan> list = loanService.getAllLoan();
+            model.addAttribute("list", list);}
+        return "loan_list";
     }
     @GetMapping("/loan")
     public String listLoan(Model model) {

@@ -37,4 +37,9 @@ public class LoanServiceImpl implements LoanService {
     public void deleteLoantById(Long id) {
         loanRepository.deleteById(id);
     }
+
+    public List<Loan> getByKeyword(String keyword){
+        return loanRepository.findByKeyword(keyword);
+    }
+
 }
